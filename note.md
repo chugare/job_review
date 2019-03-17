@@ -1,3 +1,6 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
 # 数学基础
 ## 概率基础
 
@@ -10,10 +13,12 @@
 + 二项分布
 
     表示多次进行伯努利实验的结果分布
-$$ P(K=k) = \begin{pmatrix}
+$$ 
+P(K=k) = \begin{pmatrix}
     n\\
     k
-\end{pmatrix} p^k(1-p)^{n-k}$$
+\end{pmatrix} p^k(1-p)^{n-k}
+$$
 + 多项分布
 $$
     P(x_1,x_2,...x_k;n,p_1,p_2,...p_k) = \frac{n!}{x_1!...x_k!}p_1^{x_1}...p_1^{x_k}
@@ -42,10 +47,31 @@ $$ p(\theta|x) = \frac{p(x|\theta)p(\theta)}
 
 给定一个概率分布 $D$，已知其概率密度函数（连续分布）或概率质量函数（离散分布）为 $f_D$，以及一个分布参数 $\theta$ ，我们可以从这个分布中抽出一个具有 $n$个值的采样 $X_1, X_2,\ldots, X_n$，利用 $f_D$计算出其似然函数：
 $$ L(\theta \mid x_{1},\dots ,x_{n})=f_{\theta }(x_{1},\dots ,x_{n}).$$
+
 若 $D$是离散分布， $f_{\theta }$即是在参数为 $\theta$ 时观测到这一采样的概率。若其是连续分布， $f_{\theta }$ 则为 $X_1, X_2,\ldots, X_n$联合分布的概率密度函数在观测值处的取值。一旦我们获得 $X_1, X_2,\ldots, X_n$，我们就能求得一个关于 $\theta$ 的估计。最大似然估计会寻找关于 $\theta$ 的最可能的值（即，在所有可能的 $\theta$ $\theta$ 取值中，寻找一个值使这个采样的“可能性”最大化）。从数学上来说，我们可以在 $\theta$ 的所有可能取值中寻找一个值使得似然函数取到最大值。这个使可能性最大的 $\widehat {\theta}$值即称为 $\theta$ 的最大似然估计。由定义，最大似然估计是样本的函数。
+$$
+\theta^* = argmax_\theta \sum_X logL(\theta|x)
+$$
 > 对于每一个样本的值所对应的概率值，能够得到该序列中的整体概率，在该概率式子中，只有一个参数是未知的，所以可以使用导数求极值进而得到最终值
 + EM算法
 
+在有些模型当中，存在一些隐含的不确定的变量，但是这些变量会参与到概率模型的效果，为了得到这些隐含变量的值，需要对其值进行估计。
+
+为隐含变量的值设置一个概率分布，然后使用极大似然方法找到目标函数：
+
+$$L(\theta,\pi|X)=\sum p(z_i|\pi)p(x_i|\theta,z_i)$$
+
+根据极大似然估计的理论，可以的到$\theta$的值应当取：
+$$
+\begin{aligned}
+    \theta^* & = argmax_\theta \sum_X logL(\theta|x)\\
+    &= argmax_\theta \sum_X p(z_i|\pi)p(x_i|\theta,z_i)
+\end{aligned}
+$$
+
+EM算法包含两个步骤，分别是E-step和M-step
+        
+        E-step：
 
 + Gaussian 
 ## 线性代数
