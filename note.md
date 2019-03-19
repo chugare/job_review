@@ -65,7 +65,8 @@ $$L(\theta,\pi|X)=\sum p(z_i|\pi)p(x_i|\theta,z_i)$$
 $$
 \begin{aligned}
     \theta^* & = argmax_\theta \sum_X logL(\theta|x)\\
-    &= argmax_\theta \sum_X p(z_i|\pi)p(x_i|\theta,z_i)
+    &= argmax_\theta \sum_X log\sum_Z p(z_i|\pi)p(x_i|\theta,z_i)\\
+    &=
 \end{aligned}
 $$
 
