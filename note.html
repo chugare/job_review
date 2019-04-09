@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>note.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+<h1 id="%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80">数学基础</h1>
+<h2 id="%E6%A6%82%E7%8E%87%E5%9F%BA%E7%A1%80">概率基础</h2>
+<h3 id="%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83">概率分布</h3>
+<h4 id="%E7%A6%BB%E6%95%A3%E5%9E%8B%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83">离散型概率分布</h4>
+<ul>
+<li>
+<p>伯努利分布</p>
+</li>
+<li>
+<p>二项分布</p>
+<p>表示多次进行伯努利实验的结果分布
+$$
+P(K=k) = \begin{pmatrix}
+n\
+k
+\end{pmatrix} p^k(1-p)^{n-k}
+$$</p>
+</li>
+<li>
+<p>多项分布
+$$
+P(x_1,x_2,...x_k;n,p_1,p_2,...p_k) = \frac{n!}{x_1!...x_k!}p_1^{x_1}...p_1^{x_k}
+$$
+二项分布扩展到多维的情况，指单次实验中随机变量的取值不再是0-1，而是多种离散的可能型</p>
+</li>
+<li>
+<p>贝叶斯理论</p>
+</li>
+</ul>
+<p>在贝叶斯理论中，存在先验概率和后验概率的概念，其中先验概率指的的是事件未发生之前的概率值</p>
+<p>后验概率则是指的根据事件发生的情况确定出的事件概率</p>
+<p>$$ p(\theta|x) = \frac{p(x|\theta)p(\theta)}
+{\int p(x|\theta')p(\theta')d\theta'} $$</p>
+<ul>
+<li>共轭分布</li>
+</ul>
+<p>在贝叶斯理论中，根据似然函数和先验分布可以得到后验分布，如果得到的后验分布和先验分布具有相同的形式，那么就称作这两种分布是共轭分布，这种先验分布则称为共轭先验</p>
+<blockquote>
+<p>共轭先验的好处在于提供了代数上的方便性，可以直接给出后验分布的封闭形式</p>
+</blockquote>
+<ul>
+<li>中心极限定理</li>
+</ul>
+<p>当n足够大的时候，独立同分布的随机变量之和服从正态分布</p>
+<ul>
+<li>极大似然估计</li>
+</ul>
+<p>给定一个概率分布 $D$，已知其概率密度函数（连续分布）或概率质量函数（离散分布）为 $f_D$，以及一个分布参数 $\theta$ ，我们可以从这个分布中抽出一个具有 $n$个值的采样 $X_1, X_2,\ldots, X_n$，利用 $f_D$计算出其似然函数：
+$$ L(\theta \mid x_{1},\dots ,x_{n})=f_{\theta }(x_{1},\dots ,x_{n}).$$</p>
+<p>若 $D$是离散分布， $f_{\theta }$即是在参数为 $\theta$ 时观测到这一采样的概率。若其是连续分布， $f_{\theta }$ 则为 $X_1, X_2,\ldots, X_n$联合分布的概率密度函数在观测值处的取值。一旦我们获得 $X_1, X_2,\ldots, X_n$，我们就能求得一个关于 $\theta$ 的估计。最大似然估计会寻找关于 $\theta$ 的最可能的值（即，在所有可能的 $\theta$ $\theta$ 取值中，寻找一个值使这个采样的“可能性”最大化）。从数学上来说，我们可以在 $\theta$ 的所有可能取值中寻找一个值使得似然函数取到最大值。这个使可能性最大的 $\widehat {\theta}$值即称为 $\theta$ 的最大似然估计。由定义，最大似然估计是样本的函数。
+$$
+\theta^* = argmax_\theta \sum_X logL(\theta|x)
+$$</p>
+<blockquote>
+<p>对于每一个样本的值所对应的概率值，能够得到该序列中的整体概率，在该概率式子中，只有一个参数是未知的，所以可以使用导数求极值进而得到最终值</p>
+</blockquote>
+<ul>
+<li>EM算法</li>
+</ul>
+<p>在有些模型当中，存在一些隐含的不确定的变量，但是这些变量会参与到概率模型的效果，为了得到这些隐含变量的值，需要对其值进行估计。</p>
+<p>为隐含变量的值设置一个概率分布，然后使用极大似然方法找到目标函数：</p>
+<p>$$L(\theta,\pi|X)=\sum p(z_i|\pi)p(x_i|\theta,z_i)$$</p>
+<p>根据极大似然估计的理论，可以的到$\theta$的值应当取：
+$$
+\begin{aligned}
+\theta^* &amp; = argmax_\theta \sum_X logL(\theta|x)\
+&amp;= argmax_\theta \sum_X log\sum_Z p(z_i|\pi)p(x_i|\theta,z_i)\</p>
+<p>\end{aligned}
+$$
+由Jensen不等式，可以得到如下结论：
+$$
+\sum_X log\sum_Z p(z_i|\pi)p(x_i|\theta,z_i) \ge \sum_X\sum_Zlog(p(z_i|\pi)p(x_i|\theta,z_i))
+$$</p>
+<p>EM算法包含两个步骤，分别是E-step和M-step</p>
+<pre><code>    E-step：找到隐含变量的分布或者期望
+</code></pre>
+<p>$$
+Q(\Theta|\Theta^t) = E(p_{z_i})LL(\Theta|X,Z)\quad or \quad E_{Z|X,\Theta^t}(LL(\Theta|X,Z))
+$$</p>
+<pre><code>    M-step：将这个隐含变量的分布或者期望带入到参数的对数似然当中，根据这个对数似然的式子寻找最大化似然的参数
+</code></pre>
+<p>$$
+\Theta^{t+1} = argmax_\Theta Q(\Theta|\Theta^t)
+$$</p>
+<blockquote>
+<p>本质上EM算法适用于存在隐含变量的模型估计，解决的思路就是假设隐含变量服从的分布与变量的值以及样本值相关，假设样本的分布进而确定隐含变量的分布参数，根据这个参数选择隐含变量的期望或者采样出隐含变量的值，得到关于参数的似然函数。</p>
+<p>然后对似然函数求最大似然估计，得到新一代的参数值。如是迭代</p>
+</blockquote>
+<ul>
+<li>Gaussian</li>
+</ul>
+<h2 id="%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</h2>
+<h2 id="%E5%87%B8%E4%BC%98%E5%8C%96%E7%90%86%E8%AE%BA">凸优化理论</h2>
+<h2 id="%E4%BF%A1%E6%81%AF%E8%AE%BA">信息论</h2>
+<hr>
+<h1 id="%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0">机器学习</h1>
+<h2 id="%E6%A6%82%E7%8E%87%E5%AD%A6%E6%A8%A1%E5%9E%8B">概率学模型</h2>
+<h3 id="%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF">朴素贝叶斯</h3>
+<p>关于贝叶斯公式，由条件概率公式：
+$$
+P(c|x) = \frac{P(x,c)}{P(x)}
+$$
+可以得到贝叶斯公式：
+$$
+P(c|x) = \frac{P(c)P(x|c)}{P(x)}
+$$
+在其中$P(x|c)$表示的是在类别c中的各个特征的分布，严格来说是所有特征可能值的联合概率分布，求解比较难。</p>
+<p>为了排除这个困难，在朴素贝叶斯估计中，假设所有的属性之间独立对结果产生影响。
+$$
+P(c|x) = \frac{P(c)}{P(x)}\prod_{i=1}^dP(x_i|c)
+$$
+其中$d$表示属性的数目，$x_i$表示第i个属性上的取值
+对于所有类别来说，$P(x)$相同，所以可以得到：
+$$
+h_{nb}(x) = \operatorname{argmax}<em>{c\in y} P(c)\prod</em>{i=1}^dP(x_i|c)
+$$
+其中$P(c)$表示经过统计之后，样本集之中类别的频率：
+$$
+P(c) = \frac{|D_c|}{|D|}
+$$
+条件概率$P(x_i|c)$通过样本中的取值为该值的样本计数得到：
+$$
+P(x_i|c) = \frac{|D_{c,x_i}|}{|D_c|}
+$$
+如果是连续属性，则使用密度函数的方式表示其分布，常用的方式是正态分布</p>
+<h3 id="%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%BD%91%E7%BB%9C">贝叶斯网络</h3>
+<p>由于朴素贝叶斯假设所有的属性之间都是条件独立的，这种假设往往比较强，所以在贝叶斯网络中，对各个属性之间的独立性关系进行了建模。</p>
+<h3 id="%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA">条件随机场</h3>
+<h3 id="%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B">隐马尔可夫模型</h3>
+<h2 id="%E7%BB%8F%E5%85%B8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B">经典学习模型</h2>
+<h3 id="%E5%86%B3%E7%AD%96%E6%A0%91">决策树</h3>
+<p>机器学习中，决策树是一个预测模型；他代表的是对象属性与对象值之间的一种映射关系。树中每个节点表示某个对象，而每个分叉路径则代表某个可能的属性值，而每个叶节点则对应从根节点到该叶节点所经历的路径所表示的对象的值。决策树仅有单一输出，若欲有複数输出，可以建立独立的决策树以处理不同输出。 数据挖掘中决策树是一种经常要用到的技术，可以用于分析数据，同样也可以用来作预测。</p>
+<p>从数据产生决策树的机器学习技术叫做决策树学习,通俗说就是决策树。</p>
+<p>决策树生成的过程如下：
+在每一个循环中，选择出一个最优的特征，对这个特征中的属性进行划分，每一个特征的可选值都会对应数据集中的一部分，</p>
+<pre><code>    如果这个数据集中的数据都
+    1. 具有相同的标注结果
+    2. 数据集为空
+    3. 没有可分的特征了
+    则会被生成叶子节点
+    否则将会对接下来的数据进行迭代，直到无法迭代
+</code></pre>
+<h4 id="%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E7%94%9F%E6%88%90%E6%96%B9%E5%BC%8F">决策树的生成方式</h4>
+<p>设计决策树的重要的一个问题就是，如何在每一步选择最合适的抽取特征，方法有如下几种</p>
+<ul>
+<li>
+<p>ID3:信息增益</p>
+<p><strong>信息熵的定义</strong></p>
+<blockquote>
+<p>$p_k$表示在数据集D中每一个类别的出现的概率
+$$
+Ent(D)=-\sum_{k=1}^{|y|}p_klog_2p_k
+$$
+<strong>信息增益的定义</strong></p>
+</blockquote>
+<blockquote>
+<p>$D^v$表示按照特征a中的一种可选值v分割样本数据集得到的子数据集
+$$
+Gain(D,a)=Ent(D)-\sum_{v=1}^V\frac{|D^v|}{|D|}Ent(D^v)
+$$</p>
+</blockquote>
+<p>在ID3方法中，选择最合适的特征的方式就是选择具有最高信息增益的特征</p>
+</li>
+<li>
+<p>C4.5:信息增益比</p>
+<p>考虑到有的特征的可选值较多，每一个可选值所分出来的子数据集就相对较少，比较容易得到较纯的数据集和较高的信息增益，所以需要把特征分类的数目也考虑进去。</p>
+<p>$$
+Gain_radio(D,a) = \frac{Gain(D,a)}{IV(a)}
+$$
+其中$IV()$是用来衡量特征类别数的函数：
+$$
+IV(a) = -\sum_{v=1}^V\frac{|D^v|}{|D|}log_2\frac{|D^v|}{|D|}
+$$
+具有较多可选值的特征，其IV值比较高，信息增益率就比较小。</p>
+</li>
+<li>
+<p>CART:分类回归树</p>
+<p>在CART中，借助基尼系数进行最佳属性的判定，对于属性的可能值
+<strong>基尼系数</strong>
+$$Gini(A)=1-\sum_{i=1}^Cp_i^2 $$
+直观上讲，基尼系数反映出了集合中随机抽取两个样本属于不同分类的概率，Gini值越小，数据集纯度越高。
+属性a的基尼指数定义为：
+$$Gini_index(D,a) = \sum_1^V\frac{|D_v|}{|D|}Gini(D^v)$$</p>
+</li>
+</ul>
+<blockquote>
+<p>由于CART可以解决分类和回归两类任务，而且使用的是二叉树结构，所以在每一个节点都只会设置为大于某个值和小于某个值，是某个值和不是某个值。</p>
+<p>所以每一步确定属性的时候只是在确定某个唯一的属性，和回归任务中的某个特定的分割点</p>
+</blockquote>
+<h4 id="%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%89%AA%E6%9E%9D">决策树的剪枝</h4>
+<p>由于决策树构建完成需要让数据集中的内容为空或者唯一，所以容易引起过拟合，需要对其进行剪枝剪枝的方法分为<strong>预剪枝</strong>和<strong>后剪枝</strong></p>
+<ul>
+<li>
+<p>预剪枝</p>
+<p>预剪枝是在生成决策树的同时，对树的分叉节点进行判断，如果节点分叉之后的树在验证集上的表现比不过未分叉的树的表现，则不对此节点进行分叉。</p>
+<blockquote>
+<p>预剪枝的好处是能减少过拟合，而且训练的时间也会较少。但是有的时候在当前分支表现的不好，可能会在之后的分支有更好的表现，预剪枝无法对这种情况进行判断，有时候会得到欠拟合的结果。</p>
+</blockquote>
+</li>
+<li>
+<p>后剪枝</p>
+<p>先得到一个完整的决策树，然后从最底层节点开始向上遍历，如果某个节点被剪枝之后的验证集效果高于未被剪枝的效果，那就可以对其进行剪枝。</p>
+<blockquote>
+<p>后剪枝的欠拟合风险小，泛化性能更好，但是需要完全训练决策树，而且针对每一个底层节点都要进行考察，时间成本稍高。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="%E8%BF%9E%E7%BB%AD%E5%80%BC%E7%9A%84%E5%88%92%E5%88%86">连续值的划分</h4>
+<p>对于决策树的连续值，可以先得到划分点的集合，然后从集合中选择出使得信息增益最高的划分点，划分点的取得方式如下：
+$$
+T_a = \left{ \frac{a^i+a^{i+1}}{2} | 1\le i \le n-1\right}
+$$
+即取得每两个相邻的值的中间点</p>
+<p>信息增益的划分方式为：
+$$
+\begin{aligned}
+Gain(D,a) &amp;= \max_{t\in T_a}Gain(D,a,t)\
+&amp;=\max_{t\in T_a}Ent(D) - \sum_{\lambda\in{-,+}}\frac{|D_t^\lambda|}{|D|}Ent(D_t^\lambda)</p>
+<p>\end{aligned}</p>
+<p>$$</p>
+<ul>
+<li>
+<p>多变量决策树</p>
+<p>与的时候，多个连续值变量存在于决策树之中，如果按照单一变量进行判断和分支，那么得到的结果会比较复杂，尤其是模型中的点是线性可分的时候，这时候要使用多变量的决策树，（使用线性模型让多个变量合成一个变量）</p>
+</li>
+</ul>
+<h3 id="%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA">支持向量机</h3>
+<h2 id="%E6%97%A0%E7%9B%91%E7%9D%A3%E6%A8%A1%E5%9E%8B">无监督模型</h2>
+<h3 id="%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB">层次聚类</h3>
+<h3 id="k%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB">K均值聚类</h3>
+<h3 id="%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B">高斯混合模型</h3>
+<h3 id="lda">LDA</h3>
+<ul>
+<li>
+<p>Gamma 分布
+$$
+\Gamma(x)  = \int_0^{\infty}t^{x-1}e^{-t}dt
+$$</p>
+<p>Gamma函数可以看作是阶乘在实数集上的延拓因为其具有如下性质
+$$
+\Gamma(x+1) = x\Gamma(x)
+$$</p>
+</li>
+<li>
+<p>Beta分布
+假设函数$B(\alpha,\beta)$表示如下含义：
+$$
+\frac{1}{B(\alpha,\beta)} = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}
+$$
+$\beta$分布的表示如下
+$$
+f(x;\alpha,\beta) = \frac{1}{B(\alpha,\beta)}x^{\aleph-1}(1-x)^{\beta-1}
+$$</p>
+</li>
+<li>
+<p>狄利克雷(Dirichlet)分布</p>
+<p>Dirichlet分布的概率密度函数为：
+$$
+f(x_1,x_2,...x_k;\alpha_1,\alpha_2,...\alpha_k)  = \frac{1}{B(\alpha)} \prod_{i=1}^k x_i^{\alpha^i-1}
+$$
+其中，
+$$ B(\alpha) = \frac{\prod_{i=1}^k\Gamma(\alpha^i)}{\Gamma(\sum_{i=1}^k\alpha^i)},\sum_{i=1}^k x_i=1$$</p>
+<p>根据Beta分布，二项分布，Dirichlet分布以及多项式分布的共识可以看出，Beta分布是二项分布的共轭先验分布，Dirichlet分布是多项分布的共轭先验分布</p>
+</li>
+</ul>
+<p>Beta分布以及Dirichlet分布的期望具有如下性质：</p>
+<p>$$
+\begin{aligned}
+E(p) &amp; = \int_0^1t<em>Beta(t|\alpha,\beta)dt \
+&amp;=\int_0^1 t</em>\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} t^{\alpha-1}(1-t)^{\beta-1} \
+&amp;=\int_0^1 \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} t^{\alpha}(1-t)^{\beta-1}\
+&amp;= \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\int_0^1 t^{\alpha}(1-t)^{\beta-1}
+\end{aligned}
+$$</p>
+<p>对于其中的右边部分，可以看出与$Beta(t|\alpha+1,\beta)$的表达式相似，现在对其概率分布进行积分有如下表达式：
+$$
+\int_0^1Beta(t|\alpha+1,\beta) = \int_0^1 \frac{\Gamma(\alpha+\beta+1)}{\Gamma(\alpha+1)\Gamma(\beta)} t^{\alpha}(1-t)^{\beta-1}=1
+$$
+根据Gamma函数的性质，可以将上式改写为：
+$$
+\int_0^1 \frac{\Gamma(\alpha+\beta)(\alpha+\beta)}{\Gamma(\alpha)\alpha\Gamma(\beta)} t^{\alpha}(1-t)^{\beta-1}=1
+$$
+$$
+\int_0^1 \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} t^{\alpha}(1-t)^{\beta-1}=\frac{\alpha}{(\alpha+\beta)}</p>
+<p>$$
+带入前式，可以得到E(p)的表达式为：
+$$
+\begin{aligned}
+E(p) &amp; = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\int_0^1 t^{\alpha}(1-t)^{\beta-1}\
+&amp;=\int_0^1 \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} t^{\alpha}(1-t)^{\beta-1}\
+&amp;=\frac{\alpha}{(\alpha+\beta)}\
+\end{aligned}
+$$
+这说明Beta分布的变量的均值可以用$\frac{\alpha}{\alpha+\beta}$来估计，类似的结论扩展到Dirichlet分布上可以得到
+$$
+E(p) = \left(\frac{\alpha^1}{\sum_{i=1}^K\alpha_i},\frac{\alpha^2}{\sum_{i=1}^K\alpha_i},...,\frac{\alpha^K}{\sum_{i=1}^K\alpha_i}\right)</p>
+<p>$$
+所以Dirichlet分布中的每一个类别都有一个估计值。</p>
+<h3 id="mcmc-%E4%B8%8E-gibbs%E9%87%87%E6%A0%B7">MCMC 与 Gibbs采样</h3>
+<p>MCMC即马尔可夫链蒙特卡洛采样(Markov Chain Monte Carlo)
+马尔可夫链的假设是，每一个当前状态只依赖于前一个状态，状态之间的变化借助一个状态转移矩阵实现，MH算法是其最基础的形式：
+输入：先验概率 $Q(x^{\ast} \mid x^{t-1})$
+过程：</p>
+<ol>
+<li>初始化$x^0$</li>
+<li>for t = 1, 2, ... do</li>
+<li>根据 $Q(x^{\ast} \mid x^{t-1})$采样出候选样本 $x^{\ast}$</li>
+<li>根据均匀分布从(0, 1)范围内采样出阈值$u$;</li>
+<li>if $u \le A(x^{\ast} \mid x^{t-1})$ then</li>
+<li>$x^t = x^{\ast}$</li>
+<li>else</li>
+<li>$x^t = x^{t-1}$</li>
+<li>end if</li>
+<li>enf for</li>
+<li>return $x^1, x^2, ...$
+输出：采样出的一个样本序列
+于是, 为了达到平稳状态，只需将接受率设置为
+$$
+A(x^<em>|x^{t-1}) = min\left(1,\frac{p(x^<em>Q(X^{t-1}|x^</em>))}{p(x^{t-1}Q(X^{</em>}|x^{t-1}))}\right)
+$$
+其中先验概率$Q(x^{\ast} \mid x^{t-1})$表示的就是马尔可夫链中的状态转移矩阵，即在上一步的采样结果$x^i$的条件下下一步的采样结果的概率分布，本质上是一个根据样本求分布的函数。
+而Gibbs采样的方法呢，则是根据xi的现有取值，计算条件概率</li>
+<li>随机或以某个次序选取某变量$x_i$;</li>
+<li>根据x中除x_i外的变量的现有取值，计算条件概率$p(x_i \mid X_i)$, 其中$X_i = {x_1, x_2, \cdots, x_{i-1}, x_{i+1}, \cdots, x_N}$;</li>
+<li>根$p(x_i \mid X_i)$据对变量$x_i$采样，用采样值代替原值.</li>
+</ol>
+<p>而在LDA当中，需要估计的样本就是文档到主题的分布参数以及主题到单词的分布参数，在计算的时候，目标是使得Gibbs采样收敛，收敛的标志是每一次采样之后，单词的主题信息都不变，所以每一次采样的过程都要进行下面的操作。</p>
+<ol>
+<li>计算出每一个单词的主题分布</li>
+<li>选出具有最高概率的主题作为单词的主题</li>
+<li>如果单词的主题和上一次没有变化则收敛</li>
+</ol>
+<p>所以Gibbs采样的要解决的问题就是根据样本标注当前的状态确定下一步的样本标注状态，在这个过程中，随着样本标注的变化，分布也会发生变化。</p>
+<p>根据上述步骤，可以确定每一个迭代过程中，每一个样本的主题的概率值为</p>
+<p>$$
+p(z_i = k \mid \vec z_{\lnot i}, \vec w)∝ p(z_i = k, w_i = t \mid \vec z_{\lnot i}, \vec w_{\lnot i})
+$$
+为了求得对应的概率值，首先要确定对应的文档到主题，主题到单词的分布，然后使用积分求得对应的概率值，应用文档主题以及主题单词的两个Dirichlet分布，得到如下公式：</p>
+<p>$$
+p(\vec \theta_m \mid \vec z_{\lnot i}, \vec w_{\lnot i}) = Dir(\vec \theta_m \mid \vec n_{m, \lnot i} + \vec \alpha)
+$$</p>
+<p>$$
+p(\vec \varphi_k \mid \vec z_{\lnot i}, \vec w_{\lnot i}) = Dir(\vec \varphi_k \mid \vec n_{k, \lnot i} + \vec \beta)
+$$</p>
+<p>然后对每个单词属于的主题概率进行推导：
+$$
+\begin{aligned}
+&amp;p(z_i = k \mid \vec z_{\lnot i}, \vec w)  \propto p(z_i = k, w_i = t \mid \vec z_{\lnot i}, \vec w_{\lnot i}) \
+&amp; = \int p(z_i = k, w_i = t, \vec \theta_m, \vec \varphi_k \mid \vec z_{\lnot i}, \vec w_{\lnot i})d\vec \theta_m d \vec \varphi_k \</p>
+<p>&amp; = \int p(z_i = k, \vec \theta_m, \mid \vec z_{\lnot i}, \vec w_{\lnot i}) \cdot p(w_i = t, \vec \varphi_k, \mid \vec z_{\lnot i}, \vec w_{\lnot i}) d\vec \theta_m d \vec \varphi_k \</p>
+<p>&amp; = \int p(z_i = k \mid \vec \theta_m) p(\vec \theta_m \mid \vec z_{\lnot i}, \vec w_{\lnot i})
+\cdotp(w_i = t \mid \vec \varphi_k)p(\vec \varphi_k \mid \vec z_{\lnot i}, \vec w_{\lnot i}) d\vec \theta_m d \vec \varphi_k \</p>
+<p>&amp; = \int p(z_i = k \mid \vec \theta_m) Dir(\vec \theta_m \mid \vec n_{m, \lnot i} + \vec \alpha) d \vec \theta_m</p>
+<p>\cdot p(w_i = t \mid \vec \varphi_k) Dir(\vec \varphi_k \mid \vec n_{k, \lnot i} + \vec \beta) d \vec \varphi_k \</p>
+<p>&amp; = \int \theta_{mk} Dir(\vec \theta_m \mid \vec n_{m, \lnot i} + \vec \alpha) d \vec \theta_m \cdot \int \varphi_{kt} Dir(\vec \varphi_k \mid \vec n_{k, \lnot i} + \vec \beta) d \vec \varphi_k \</p>
+<p>&amp;= E(\theta_{mk}) \cdot E(\varphi_{kt}) \</p>
+<p>&amp;= \hat \theta_{mk} \cdot \hat \varphi_{kt}</p>
+<p>\end{aligned}
+$$</p>
+<p>可以发现每一个单词属于某一个主题的概率值就等于这两个估计的乘积：</p>
+<p>$$</p>
+<p>\hat{\theta}<em>{mk} = \frac{n</em>{m,\neg i}^{(k)} + \alpha_k}{\sum_{k=1}^K (n_{m,\neg i}^{(k)} + \alpha_k)}
+$$
+$$
+\hat{\varphi}<em>{kt} = \frac{n</em>{k,\neg i}^{(t)} + \beta_t}{\sum_{t=1}^V (n_{k,\neg i}^{(t)} + \beta_t)}
+$$</p>
+<p>由此可以看出，要求得每一次的单词的主题分布，只要对上一次的文档-主题，主题-单词的数量进行统计就可以了。</p>
+<p>所以Gibbs采样的过程就是一步一步的生成这些概率，最终样本集稳定的时候，就代表模型收敛</p>
+<p>LDA
+使用两个狄利克雷模型来生成文档到主题，主题到词语的分布，借助这两个分布来生成主题到</p>
+<h2 id="%E9%87%87%E6%A0%B7">采样</h2>
+<h3 id="%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E9%87%87%E6%A0%B7">蒙特卡洛采样</h3>
+<p>蒙特卡洛采样的思路是按照某一个变量或者概率分布进行随机化采样，通过结果计算某一个特定的值，如均值，如果采样的区间是均匀分布的，直接使用均匀分布采样即可，如果不是均匀分布的，那么就要计算在$q(x)$分布下目标值，使用积分或者求和的方式。</p>
+<h2 id="%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0">集成学习</h2>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+<p>在机器学习的有监督学习算法中，我们的目标是学习出一个稳定的且在各个方面表现都较好的模型，但实际情况往往不这么理想，有时我们只能得到多个有偏好的模型（弱监督模型，在某些方面表现的比较好）。集成学习就是组合这里的多个弱监督模型以期得到一个更好更全面的强监督模型，集成学习潜在的思想是即便某一个弱分类器得到了错误的预测，其他的弱分类器也可以将错误纠正回来。</p>
+<p>集成学习在各个规模的数据集上都有很好的策略、</p>
+<h3 id="bagging">Bagging</h3>
+<p>是bootstrap aggregating的缩写，bootstrap也称作自助法，又放回的抽样方法</p>
+<ul>
+<li>采用重抽样方法（有放回抽样）从原始样本中抽取一定数量的样本</li>
+<li>根据抽出的样本计算想要得到的统计量T</li>
+<li>重复上述N次（一般大于1000），得到N个统计量T</li>
+<li>根据这N个统计量，即可计算出统计量的置信区间</li>
+</ul>
+<h3 id="boosting">Boosting</h3>
+<p>boosting称为提升方法，减少监督学习偏差的学习算法，其中有代表性的有两种，分别是GDBT和AdaBoost</p>
+<blockquote>
+<p>AdaBoost:(Adaptive Boost)在一开始训练的时候对所有的训练数据赋予相同的权重，但是在每轮训练失败之后都会为失败的样本增加权重</p>
+</blockquote>
+<ol>
+<li>
+<p>begin initial D={x1，y1，...，xn，yn}，kmax（最大循环次数），Wk(i)=1/n，i=1，...，n</p>
+</li>
+<li>
+<p>k ← 0</p>
+</li>
+<li>
+<p>do k ← k+1</p>
+</li>
+<li>
+<p>训练使用按照Wk(i)采样的D的弱学习器Ck</p>
+</li>
+<li>
+<p>Ek ←对使用Wk(i)的D测量的Ck的训练误差</p>
+</li>
+<li>
+<p>$\alpha <em>{k}\gets {\tfrac {1}{2}}\ln {\frac {1-E</em>{k}}{E_{k}}}$</p>
+</li>
+<li>
+<p>$W_{{k+1}}(i)\gets {\dfrac  {W_{{k}}(i)}{Z_{{k}}}}\times {\begin{cases}e^{{-\alpha <em>{{k}}}},&amp;{{if  }}h</em>{{k}}(x^{{i}})=y_{{i}}\e^{{\alpha <em>{{k}}}},&amp;{{if  }}h</em>{{k}}(x^{{i}})\neq y_{{i}}\end{cases}}$</p>
+</li>
+<li>
+<p>until k=kmax</p>
+</li>
+<li>
+<p>return Ck和$α_k，k=1，...，kmax$（带权值分类器的总体）</p>
+</li>
+<li>
+<p>end</p>
+</li>
+</ol>
+<h3 id="gbdtgradient-boost-decision-tree">GBDT:(Gradient Boost Decision Tree)</h3>
+<h4 id="xgboost">XGboost</h4>
+<p>是一个开源的GBDT框架，用于实现高速的GBDT</p>
+<hr>
+<h1 id="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</h1>
+<h2 id="%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95-bp">前向传播算法 BP</h2>
+<p>$$
+\frac{\partial E_k}{\partial w}= \frac{\partial E_k}{\partial \sigma}\frac{\partial \sigma}{\partial w}
+$$
+在神经网络的每一层，都可以得到某个参数在当前损失函数条件下的梯度值，这个梯度值与</p>
+<ol>
+<li>当前层的输出</li>
+<li>当前层的输入</li>
+<li>从下一层传来的梯度值</li>
+</ol>
+<p>有关</p>
+<p>而使用批量梯度下降的时候，由于每一次梯度更新对于参数的变化都是独立的而且是加法变换，所以批量梯度需要计算每一次的梯度，在更新的时候进行求和，每个样本的梯度计算可以是并行的。</p>
+<h2 id="rbfradical-basis-function%E5%BE%84%E5%90%91%E5%9F%BA%E5%87%BD%E6%95%B0">RBF(Radical basis Function,径向基函数)</h2>
+<p>假设任意网络都可以使用若干个径向对称的基函数求和表示</p>
+<h2 id="cnn">CNN</h2>
+<h2 id="%E6%B7%B1%E5%BA%A6%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C">深度残差网络</h2>
+<h2 id="rnn">RNN</h2>
+<blockquote>
+<p>RNN具有的梯度消失的问题:</p>
+<p>由于在BPTT计算的时候，每一个步骤的隐层状态h和前一个隐层状态之间的参数会被多次连乘，所以这个参数值一旦是小的值就会引起梯度消失，大的值会引起梯度爆炸
+$$
+S_t = \sigma(W_hX_t+U_hS_{t-1}+b_h)
+\
+O_t = \sigma(W_oS_t + b_o)
+$$
+$$
+\frac{\partial O_t}{\partial W_o} = \frac{\partial O_t}{\partial \sigma}\frac{\partial \sigma}{\partial W_o} = \frac{\partial O_t}{\partial \sigma}S_t
+$$</p>
+</blockquote>
+<p>$$
+\frac{\partial O_t}{\partial W_h} =  \frac{\partial O_t}{\partial \sigma} \frac{\partial \sigma}{\partial W_h} = \frac{\partial O_t}{\partial \sigma}X_t
+$$
+$$
+\frac{\partial O_t}{\partial U_h} =  \frac{\partial O_t}{\partial \sigma} \frac{\partial \sigma}{\partial U _h} = \frac{\partial O_t}{\partial \sigma}(S_t+\frac{\partial S_t}{\partial U_t})
+$$</p>
+<h3 id="%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9Clstm">长短期记忆网络(LSTM)</h3>
+<h2 id="%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0">激活函数</h2>
+<ul>
+<li>
+<p>Sigmoid</p>
+</li>
+<li>
+<p>Softmax</p>
+</li>
+<li>
+<p>Tanh</p>
+</li>
+<li>
+<p>Relu</p>
+</li>
+</ul>
+<h2 id="%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96batch-normalize">批量归一化(Batch Normalize)</h2>
+<h2 id="dropout">Dropout</h2>
+<hr>
+<h1 id="%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B">特征工程</h1>
+<h2 id="%E7%89%B9%E5%BE%81%E5%BD%92%E4%B8%80%E5%8C%96">特征归一化</h2>
+<h2 id="%E6%96%87%E6%9C%AC%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F">文本的表示方式</h2>
+<h3 id="tf-idf">TF-IDF</h3>
+<p>tf-idf（英语：term frequency–inverse document frequency）是一種用於資訊檢索與文本挖掘的常用加權技術。tf-idf是一種統計方法，用以評估一字詞對於一個文件集或一個語料庫中的其中一份文件的重要程度。字詞的重要性隨著它在文件中出現的次數成正比增加，但同時會隨著它在語料庫中出現的頻率成反比下降。tf-idf加權的各種形式常被搜索引擎應用，作為文件與用戶查詢之間相關程度的度量或評級。除了tf-idf以外，互聯網上的搜尋引擎還會使用基於連結分析的評級方法，以確定文件在搜尋結果中出現的順序。</p>
+<h3 id="textrank">textRank</h3>
+<h3 id="word2vec">word2vec</h3>
+<h2 id="%E9%AB%98%E7%BB%B4%E7%89%B9%E5%BE%81%E7%9A%84%E5%A4%84%E7%90%86">高维特征的处理</h2>
+<h3 id="pca">PCA</h3>
+<p>主成分分析法的目标是，对原数据集降维之后，尽可能的得到具有较大方差的数据</p>
+<p>使用的方法是构建一组新的坐标系${w_1,w_2,...,w_d}$，使得在这个坐标系上面的投影</p>
+<h3 id="%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3svd">奇异值分解(SVD)</h3>
+<h1 id="%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0">模型评估</h1>
+<h2 id="%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87">评价指标</h2>
+<ul>
+<li>准确率</li>
+<li>召回率</li>
+<li>F值
+<ul>
+<li>macro F值</li>
+<li>micro F值</li>
+</ul>
+</li>
+<li>其他指标
+<ul>
+<li>ROUGE</li>
+<li>BLEU</li>
+</ul>
+</li>
+</ul>
+<h2 id="roc-%E6%9B%B2%E7%BA%BF">ROC 曲线</h2>
+<p>ROC曲线的横坐标是
+$$\frac{FP}{N}$$
+纵坐标是：
+$$\frac{TP}{P}$$</p>
+<p>反映出了一个分类器在调节选择阈值的时候，选出正确结果和排除错误结果的综合能力。</p>
+<h2 id="%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6%E4%BB%A5%E5%8F%8A%E4%BD%99%E5%BC%A6%E8%B7%9D%E7%A6%BB">余弦相似度以及余弦距离</h2>
+<h2 id="%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95evaluation">评估方法(Evaluation)</h2>
+<h3 id="holdout">Holdout</h3>
+<h3 id="%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81">交叉验证</h3>
+<h3 id="%E8%87%AA%E5%8A%A9%E6%B3%95bootstrap">自助法(Bootstrap)</h3>
+<h2 id="%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98">超参数调优</h2>
+<h2 id="%E8%BF%87%E6%8B%9F%E5%90%88%E4%BA%8E%E6%AC%A0%E6%8B%9F%E5%90%88">过拟合于欠拟合</h2>
+<h3 id="%E8%A1%A8%E7%8E%B0">表现</h3>
+<h3 id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">解决方法</h3>
+
+</body>
+</html>
